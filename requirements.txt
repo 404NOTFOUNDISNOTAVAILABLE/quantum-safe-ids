@@ -1,0 +1,19 @@
+# requirements.txt
+
+# --- Federated Learning ---
+flwr
+
+# --- Data Processing & ML ---
+pandas
+dask[dataframe]
+pyarrow
+numpy
+scikit-learn
+tensorflow
+
+# --- Post-Quantum Cryptography (PQC) ---
+oqs
+
+# --- Utilities ---
+jupyter
+tree
