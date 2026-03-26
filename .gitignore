@@ -5,6 +5,8 @@ __pycache__/
 .venv
 env/
 venv/
+venv_pq/
+*.zip
 *.log
 .DS_Store
 results/
