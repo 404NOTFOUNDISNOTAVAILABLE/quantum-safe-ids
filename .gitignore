@@ -1,14 +1,38 @@
+# Python
 __pycache__/
 *.py[cod]
-*.class
-.env
-.venv
-env/
-venv/
+*.egg-info/
+.eggs/
+
+# Virtual environment
 venv_pq/
-*.zip
-*.log
-.DS_Store
-results/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data — never commit raw or processed datasets
 data/
+*.parquet
+*.csv
+*.h5
+
+# Benchmark raw logs
+benchmark_*.csv
+nohup.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
 build/
+dist/
+
+# Results directory (raw benchmark outputs)
+results/
+CLAUDE.md
+codebase_for_gem.txt
+source_code_v1.zip
+liboqs-python/
