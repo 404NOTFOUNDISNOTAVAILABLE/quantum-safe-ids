@@ -231,6 +231,8 @@ def main() -> None:
     parser.add_argument("--dataset", type=str, default="toniot",
                         choices=["toniot", "ciciot2023"],
                         help="Dataset to use for training")
+    parser.add_argument("--data-path", type=str, default=None,
+                        help="Override default dataset parquet path (optional)")
     parser.add_argument("--model", type=str, default="cnn",
                         choices=["cnn", "mobilenet"],
                         help="Model architecture: cnn (default) or mobilenet")
@@ -244,6 +246,9 @@ def main() -> None:
     else:
         data_path = "../data/sampled_data.parquet"
         num_classes = 4
+
+    if args.data_path is not None:
+        data_path = args.data_path
 
     client = QuantumEdgeClient(
         data_path=data_path,

@@ -69,7 +69,8 @@ def wait_for_server(log_path: Path, timeout: int = 30) -> bool:
 def run_session(condition: dict, run_idx: int, rounds: int,
                 csv_path: Path, log_dir: Path, dataset: str = "toniot",
                 model: str = "cnn", fedprox: bool = False,
-                clients: int = 2, local_epochs: int = 2) -> bool:
+                clients: int = 2, local_epochs: int = 2,
+                data_path: str = None, noise_multiplier: float = 1.1) -> bool:
     """
     Runs one complete FL session (server + N clients).
     Returns True if the server exited cleanly (returncode 0).
@@ -114,6 +115,9 @@ def run_session(condition: dict, run_idx: int, rounds: int,
         ] + condition["client_flags"]
         client_cmd += ["--model", model]
         client_cmd += ["--local-epochs", str(local_epochs)]
+        client_cmd += ["--noise", str(noise_multiplier)]
+        if data_path is not None:
+            client_cmd += ["--data-path", data_path]
         with open(client_logs[cid], "w") as cf:
             proc = subprocess.Popen(
                 client_cmd, stdout=cf, stderr=cf,
@@ -249,6 +253,10 @@ def main() -> None:
                         help="Number of FL clients (default: 2)")
     parser.add_argument("--local-epochs", type=int, default=2,
                         help="Local epochs per round (default: 2)")
+    parser.add_argument("--data-path", type=str, default=None,
+                        help="Override default dataset parquet path (optional)")
+    parser.add_argument("--noise-multiplier", type=float, default=1.1,
+                        help="DP noise multiplier σ passed to edge_client --noise (default: 1.1)")
     args = parser.parse_args()
 
     if args.csv:
@@ -293,7 +301,8 @@ def main() -> None:
             t0 = time.time()
             ok = run_session(condition, run_idx, args.rounds, csv_path, log_dir, args.dataset,
                              model=args.model, fedprox=args.fedprox, clients=args.clients,
-                             local_epochs=args.local_epochs)
+                             local_epochs=args.local_epochs, data_path=args.data_path,
+                             noise_multiplier=args.noise_multiplier)
             elapsed = time.time() - t0
             status = "OK" if ok else "FAIL"
             print(f"→ {status}  ({elapsed:.1f}s)")
