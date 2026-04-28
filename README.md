@@ -8,7 +8,6 @@
 
 > **Submitted to IEEE GLOBECOM 2026 — CISS Symposium**  
 > *PQ-FL-IDS: A Post-Quantum Safe Federated Edge Intrusion Detection Scheme underlying 6G*  
-> Husain Lucky, Pronaya Bhattacharya, Bharat Bhushan, Nishat Mahdiya Khan, Thippa Reddy Gadekallu
 
 ---
 
@@ -307,24 +306,6 @@ The server generates a **fresh ML-KEM-512 keypair every round** and deletes the 
 | Edge-QSFL (IEEE TCE 2026) | ❌ Qiskit-simulated | ✅ | ❌ | not reported |
 
 PQ-FL-IDS achieves **9,350× lower PQC overhead** than Nayak et al. (0.002% vs 18.7%).
-
----
-
-## Citation
-
-If you use this code, please cite:
-
-```bibtex
-@inproceedings{lucky2026pqflids,
-  title     = {{PQ-FL-IDS}: A Post-Quantum Safe Federated Edge Intrusion Detection
-               Scheme underlying 6G},
-  author    = {Lucky, Husain and Bhattacharya, Pronaya and Bhushan, Bharat and
-               Khan, Nishat Mahdiya and Gadekallu, Thippa Reddy},
-  booktitle = {Proc. IEEE Global Communications Conference (GLOBECOM)},
-  year      = {2026},
-  note      = {CISS Symposium}
-}
-```
 
 ---
 
